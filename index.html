@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>न्यू महाराष्ट्र गर्जना | New Maharashtra Garjana - सत्य घडामोडींचा वेगवान आढावा</title>
+<meta name="description" content="महाराष्ट्रातील सर्वात विश्वासार्ह मराठी बातम्यांचे उच्च दर्जाचे पोर्टल - न्यू महाराष्ट्र गर्जना. ताज्या घडामोडी, राजकारण, क्रीडा, मनोरंजन व इतर बातम्या.">
+<meta name="keywords" content="मराठी बातम्या, महाराष्ट्र बातम्या, न्यू महाराष्ट्र गर्जना, New Maharashtra Garjana, Breaking News Marathi">
+<meta name="author" content="न्यू महाराष्ट्र गर्जना">
+
+<!-- OpenGraph / Social Media SEO -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="न्यू महाराष्ट्र गर्जना | New Maharashtra Garjana">
+<meta property="og:description" content="महाराष्ट्रातील सत्य आणि निःपक्षपाती बातम्यांचे नंबर १ पोर्टल.">
+<meta property="og:image" content="logo.jpg">
+<meta property="og:url" content="https://newmaharashtragarjana.com">
+
+<!-- JSON-LD Structured Data for NewsMediaOrganization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "न्यू महाराष्ट्र गर्जना",
+  "alternateName": "New Maharashtra Garjana",
+  "url": "https://newmaharashtragarjana.com",
+  "logo": "logo.jpg",
+  "slogan": "सत्य घडामोडींचा वेगवान आढावा...",
+  "sameAs": [
+    "https://facebook.com",
+    "https://twitter.com",
+    "https://youtube.com"
+  ]
+}
+</script>
+
+<!-- GOOGLE FONTS: Marathi Calligraphy (Tiro Devanagari Marathi, Tillana, Rozha One, Yatra One, Mukta, Noto Sans Devanagari) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Rozha+One&family=Tillana:wght@400;600;700;800&family=Tiro+Devanagari+Marathi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- READING PROGRESS BAR -->
+<div class="reading-progress-bar" id="readingProgress"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-left">
+      <span class="live-date-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span id="live-date">सोमवार, १० ऑगस्ट २०२६</span>
+      </span>
+      <span class="separator">|</span>
+      <span class="top-slogan">सत्य घडामोडींचा वेगवान आढावा...</span>
+      <span class="separator">|</span>
+      <span class="weather-widget" id="weatherWidget">
+        <span class="weather-icon">☀️</span> मुंबई ३१°C
+      </span>
+    </div>
+    <div class="top-bar-right">
+      <!-- MULTI-LANGUAGE SELECTOR -->
+      <div class="lang-switcher-wrap" title="भाषा निवडा / Select Language">
+        <span class="lang-switch-label">🌐 भाषा:</span>
+        <select id="languageSelect" class="lang-select-input" onchange="translatePageLanguage(this.value)">
+          <option value="mr">🇮🇳 मराठी (Marathi)</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+          <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+          <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+          <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+          <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+          <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+          <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+          <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+        </select>
+      </div>
+      <span class="separator">|</span>
+      <div class="font-switcher-wrap" title="कॅलिग्राफी फॉन्ट बदला">
+        <span class="font-switch-label">✒️ फॉन्ट:</span>
+        <select id="titleFontSelect" class="font-select-input" onchange="changeTitleFont(this.value)">
+          <option value="font-tiro">तिरो देवनागरी (Calligraphy)</option>
+          <option value="font-tillana">तिल्लाना (Modern Curved)</option>
+          <option value="font-rozha">रोज्हा वन (Heavy Banner)</option>
+          <option value="font-yatra">यात्रा वन (Devanagari Stencil)</option>
+        </select>
+      </div>
+      <span class="separator">|</span>
+      <button class="admin-top-btn" id="adminPortalBtn" title="ॲडमिन पॅनेल लॉगिन">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>ॲडमिन पॅनेल</span>
+      </button>
+      <span class="separator">|</span>
+      <div class="social-links">
+        <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="Twitter/X" aria-label="Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="YouTube" aria-label="YouTube">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="WhatsApp Channel" aria-label="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.276.44-1.157 4.226 4.321-1.133.303.18z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="main-header" id="mainHeader">
+  <div class="container header-inner">
+    <div class="logo-wrap" id="logoWrap" title="न्यू महाराष्ट्र गर्जना - मुख्यपान">
+      <img src="logo.jpg" alt="न्यू महाराष्ट्र गर्जना ब्रीदवाक्य लोगो" class="logo-img" id="mainLogo">
+    </div>
+    
+    <div class="header-center">
+      <h1 class="site-title" id="siteTitleText">न्यू महाराष्ट्र गर्जना</h1>
+      <div class="site-tagline">NEW MAHARASHTRA GARJANA</div>
+      <div class="header-motto">महाराष्ट्र घडामोडींचे अग्रगण्य डिजिटल वृत्तपत्र</div>
+    </div>
+    
+    <div class="header-right">
+      <button class="live-tv-btn" id="liveTvBtn">
+        <span class="pulse-dot"></span>
+        <span>थेट प्रक्षेपण</span>
+      </button>
+      <button class="search-btn" id="searchToggle" aria-label="शोधा">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="menu-btn" id="mobileMenuBtn" aria-label="मेनू">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- QUICK SEARCH OVERLAY / EXPANDABLE BAR -->
+  <div class="search-bar-wrap" id="searchBar">
+    <div class="container search-bar-inner">
+      <div class="search-input-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="कोणतीही बातमी, विषय किंवा व्यक्ती शोधा..." class="search-input" id="searchInput">
+        <button type="button" class="clear-search-btn" id="clearSearchBtn">&times;</button>
+      </div>
+      <button class="search-submit" id="searchSubmitBtn">शोधा</button>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN NAVIGATION -->
+<nav class="main-nav" id="mainNav">
+  <div class="container">
+    <ul class="nav-list" id="navList">
+      <li class="nav-item active" data-category="सर्व"><a href="#" onclick="filterCategory('सर्व', event)">मुख्यपान</a></li>
+      <li class="nav-item" data-category="महाराष्ट्र"><a href="#" onclick="filterCategory('महाराष्ट्र', event)">महाराष्ट्र</a></li>
+      <li class="nav-item" data-category="राजकारण"><a href="#" onclick="filterCategory('राजकारण', event)">राजकारण</a></li>
+      <li class="nav-item" data-category="मुंबई"><a href="#" onclick="filterCategory('मुंबई', event)">मुंबई</a></li>
+      <li class="nav-item" data-category="पुणे"><a href="#" onclick="filterCategory('पुणे', event)">पुणे</a></li>
+      <li class="nav-item" data-category="देश"><a href="#" onclick="filterCategory('देश', event)">देश</a></li>
+      <li class="nav-item" data-category="जग"><a href="#" onclick="filterCategory('जग', event)">जग</a></li>
+      <li class="nav-item" data-category="क्रीडा"><a href="#" onclick="filterCategory('क्रीडा', event)">क्रीडा</a></li>
+      <li class="nav-item" data-category="मनोरंजन"><a href="#" onclick="filterCategory('मनोरंजन', event)">मनोरंजन</a></li>
+      <li class="nav-item" data-category="व्यापार"><a href="#" onclick="filterCategory('व्यापार', event)">व्यापार</a></li>
+      <li class="nav-item" data-category="आरोग्य"><a href="#" onclick="filterCategory('आरोग्य', event)">आरोग्य</a></li>
+      <li class="nav-item" data-category="तंत्रज्ञान"><a href="#" onclick="filterCategory('तंत्रज्ञान', event)">तंत्रज्ञान</a></li>
+      <li class="nav-item" data-category="व्हिडिओ"><a href="#" onclick="filterCategory('व्हिडिओ', event)">व्हिडिओ</a></li>
+      <li class="nav-item" data-category="फोटो"><a href="#" onclick="filterCategory('फोटो', event)">फोटो</a></li>
+      <li class="nav-item live-nav-item"><a href="#" class="live-tag" onclick="filterCategory('थेट', event)">🔴 थेट बातम्या</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BREAKING NEWS TICKER -->
+<div class="ticker-wrap">
+  <div class="container ticker-inner">
+    <div class="ticker-label">
+      <span class="ticker-flash">⚡</span>
+      <span class="ticker-title-text">ताजी बातमी</span>
+    </div>
+    <div class="ticker-content">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- Dynamic breaking news items via JavaScript -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY FILTER ACTIVE BAR (WHEN USER SELECTS A SPECIFIC CATEGORY) -->
+<div class="category-status-bar" id="categoryStatusBar" style="display: none;">
+  <div class="container category-status-inner">
+    <div class="cat-status-info">
+      <span class="cat-status-icon">📌</span>
+      <span>वर्गवारी: <strong id="activeCategoryName">महाराष्ट्र</strong></span>
+      <span class="cat-count-badge" id="activeCategoryCount">(० बातम्या)</span>
+    </div>
+    <button class="reset-filter-btn" onclick="resetCategoryFilter()">सर्व बातम्या पाहा ✕</button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT WRAPPER -->
+<main class="main-content">
+  <div class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-main">
+        <div class="hero-card" id="heroCard" onclick="openArticleFromHero()">
+          <div class="hero-img-wrap">
+            <img src="https://picsum.photos/800/450?random=1" alt="मुख्य बातमी" class="hero-img" id="heroImg" loading="eager">
+            <div class="hero-overlay-gradient"></div>
+            <div class="hero-cat-badge" id="heroCatBadge">महाराष्ट्र</div>
+            <div class="live-badge" id="heroLiveBadge">🔴 LIVE</div>
+          </div>
+          <div class="hero-body">
+            <h2 class="hero-title" id="heroTitle">महाराष्ट्रात नव्या विकास योजनांची मुख्यमंत्र्यांकडून घोषणा, राज्याचा कायापालट होणार</h2>
+            <p class="hero-desc" id="heroDesc">राज्य सरकारने आज एक महत्त्वाकांक्षी विकास योजना जाहीर केली असून यामुळे लाखो नागरिकांना थेट लाभ होणार आहे. मुख्यमंत्र्यांनी पत्रकार परिषदेत सविस्तर माहिती दिली.</p>
+            <div class="hero-meta">
+              <span class="meta-time" id="heroTime">📅 १० ऑगस्ट, २०२६</span>
+              <span class="meta-author">✍️ न्यू महाराष्ट्र गर्जना प्रतिनिधी</span>
+              <span class="read-more-link">सविस्तर वाचा →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- HERO SIDE NEWS STACK -->
+      <div class="hero-side" id="heroSideContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- LATEST NEWS GRID -->
+    <section class="section-wrap" id="latestNewsSection">
+      <div class="section-header">
+        <h2 class="section-title"><span class="title-accent">●</span> ताज्या घडामोडी</h2>
+        <a href="#" class="view-all" onclick="filterCategory('सर्व', event)">सर्व पाहा →</a>
+      </div>
+      <div class="news-grid" id="latestNewsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- TWO COLUMN: MAHARASHTRA + POLITICS -->
+    <div class="two-col-wrap" id="maharashtraPoliticsSection">
+      <section class="section-wrap half">
+        <div class="section-header">
+          <h2 class="section-title"><span class="title-accent">●</span> महाराष्ट्र घडामोडी</h2>
+          <a href="#" class="view-all" onclick="filterCategory('महाराष्ट्र', event)">सर्व पाहा →</a>
+        </div>
+        <div class="list-news" id="maharashtraNews">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+      
+      <section class="section-wrap half">
+        <div class="section-header">
+          <h2 class="section-title"><span class="title-accent">●</span> राजकारण</h2>
+          <a href="#" class="view-all" onclick="filterCategory('राजकारण', event)">सर्व पाहा →</a>
+        </div>
+        <div class="list-news" id="politicsNews">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- VIDEO NEWS SECTION -->
+    <section class="section-wrap video-section" id="videoSection">
+      <div class="section-header">
+        <h2 class="section-title"><span class="title-accent">🎥</span> व्हिडिओ बातम्या</h2>
+        <a href="#" class="view-all" onclick="filterCategory('व्हिडिओ', event)">सर्व व्हिडिओ पाहा →</a>
+      </div>
+      <div class="video-grid" id="videoGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- SPORTS + ENTERTAINMENT ROW -->
+    <div class="two-col-wrap" id="sportsEntertainmentSection">
+      <section class="section-wrap half">
+        <div class="section-header">
+          <h2 class="section-title"><span class="title-accent">🏆</span> क्रीडा जगत</h2>
+          <a href="#" class="view-all" onclick="filterCategory('क्रीडा', event)">सर्व पाहा →</a>
+        </div>
+        <div class="list-news" id="sportsNews">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+      
+      <section class="section-wrap half">
+        <div class="section-header">
+          <h2 class="section-title"><span class="title-accent">🎬</span> मनोरंजन & ग्लॅमर</h2>
+          <a href="#" class="view-all" onclick="filterCategory('मनोरंजन', event)">सर्व पाहा →</a>
+        </div>
+        <div class="list-news" id="entertainmentNews">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- PHOTO GALLERY -->
+    <section class="section-wrap" id="photoSection">
+      <div class="section-header">
+        <h2 class="section-title"><span class="title-accent">📸</span> फोटो गॅलरी</h2>
+        <a href="#" class="view-all" onclick="filterCategory('फोटो', event)">सर्व फोटो पाहा →</a>
+      </div>
+      <div class="photo-grid" id="photoGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+  <div class="footer-top">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <img src="logo.jpg" alt="न्यू महाराष्ट्र गर्जना" class="footer-logo">
+        <p class="footer-tagline">सत्य घडामोडींचा वेगवान आढावा...</p>
+        <p class="footer-about">न्यू महाराष्ट्र गर्जना हे महाराष्ट्रातील अग्रगण्य आणि सर्वात विश्वासार्ह मराठी बातमी पोर्टल आहे. आम्ही नेहमीच सत्य, अचूक आणि निःपक्षपाती बातम्या देण्यासाठी बांधील आहोत.</p>
+        
+        <!-- Newsletter Signup -->
+        <div class="newsletter-box">
+          <h5>बातम्यांचे अपडेट्स व्हॉट्सॲप / ईमेलवर मिळवा</h5>
+          <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <input type="text" placeholder="तुमचा व्हॉट्सॲप नंबर किंवा ईमेल..." required id="newsletterInput">
+            <button type="submit">सबस्क्राईब करा</button>
+          </form>
+        </div>
+
+        <div class="footer-socials">
+          <a href="#" class="social-icon-lg">📘 फेसबुक (Facebook)</a>
+          <a href="#" class="social-icon-lg">🐦 ट्विटर (Twitter/X)</a>
+          <a href="#" class="social-icon-lg">▶️ यूट्यूब (YouTube)</a>
+          <a href="#" class="social-icon-lg">💬 व्हॉट्सॲप चॅनेल</a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>मुख्य विभाग</h4>
+        <ul>
+          <li><a href="#" onclick="filterCategory('महाराष्ट्र', event)">महाराष्ट्र</a></li>
+          <li><a href="#" onclick="filterCategory('राजकारण', event)">राजकारण</a></li>
+          <li><a href="#" onclick="filterCategory('मुंबई', event)">मुंबई</a></li>
+          <li><a href="#" onclick="filterCategory('पुणे', event)">पुणे</a></li>
+          <li><a href="#" onclick="filterCategory('देश', event)">देश</a></li>
+          <li><a href="#" onclick="filterCategory('जग', event)">जग</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>इतर विभाग</h4>
+        <ul>
+          <li><a href="#" onclick="filterCategory('क्रीडा', event)">क्रीडा</a></li>
+          <li><a href="#" onclick="filterCategory('मनोरंजन', event)">मनोरंजन</a></li>
+          <li><a href="#" onclick="filterCategory('व्यापार', event)">व्यापार & अर्थव्यवस्था</a></li>
+          <li><a href="#" onclick="filterCategory('आरोग्य', event)">आरोग्य</a></li>
+          <li><a href="#" onclick="filterCategory('तंत्रज्ञान', event)">तंत्रज्ञान</a></li>
+          <li><a href="#" onclick="filterCategory('व्हिडिओ', event)">व्हिडिओ बातम्या</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>माहिती & संपर्क</h4>
+        <ul>
+          <li><a href="#" onclick="openStaticInfo('आमच्याबद्दल')">आमच्याबद्दल</a></li>
+          <li><a href="#" onclick="openStaticInfo('संपर्क')">संपर्क साधा</a></li>
+          <li><a href="#" onclick="openStaticInfo('जाहिरात')">जाहिरात दरपत्रक</a></li>
+          <li><a href="#" onclick="openStaticInfo('गोपनीयता')">गोपनीयता धोरण</a></li>
+          <li><a href="#" onclick="openStaticInfo('अटी')">अटी व शर्ती</a></li>
+          <li><a href="#" onclick="openAdminModal()">🔐 ॲडमिन लॉगिन</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© २०२६ न्यू महाराष्ट्र गर्जना (New Maharashtra Garjana) | सर्व हक्क राखीव.</p>
+      <p class="footer-dev">Ultra-HD Marathi Publishing Platform • Designed & Powered for Performance</p>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" id="backToTop" aria-label="वर जा">↑</button>
+
+<!-- ==================== MODALS ==================== -->
+
+<!-- 1. FULL ARTICLE READER MODAL -->
+<div class="modal-overlay" id="articleModal">
+  <div class="modal-container article-modal-container">
+    <button class="modal-close-btn" onclick="closeArticleModal()">&times;</button>
+    
+    <div class="article-reader-content" id="articleReaderContent">
+      <!-- Dynamically filled by openArticle(id) -->
+    </div>
+  </div>
+</div>
+
+<!-- 2. ADMIN PORTAL MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal-container admin-modal-container">
+    <button class="modal-close-btn" onclick="closeAdminModal()">&times;</button>
+
+    <!-- ADMIN LOGIN VIEW -->
+    <div class="admin-login-box" id="adminLoginBox">
+      <div class="admin-header-badge">
+        <span class="admin-badge-icon">🔐</span>
+        <h2>न्यू महाराष्ट्र गर्जना ॲडमिन पोर्टल</h2>
+        <p>बातमी प्रकाशन व व्यवस्थापन प्रणाली</p>
+      </div>
+      
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label>युझरनेम (Username)</label>
+          <input type="text" id="adminUsernameInput" value="admin" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label>पासवर्ड (Password)</label>
+          <input type="password" id="adminPasswordInput" value="admin" required class="form-control">
+          <small class="help-text">डिफॉल्ट पासवर्ड: <strong>admin</strong></small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">लॉगिन करा</button>
+      </form>
+    </div>
+
+    <!-- ADMIN DASHBOARD PANEL (HIDDEN UNTIL LOGGED IN) -->
+    <div class="admin-dashboard-box" id="adminDashboardBox" style="display: none;">
+      <div class="admin-dashboard-header">
+        <div class="admin-title-area">
+          <span class="admin-badge-icon">⚡</span>
+          <h3>ॲडमिन व्यवस्थापन केंद्र (Publishing Console)</h3>
+        </div>
+        <div class="admin-actions-top">
+          <button class="btn btn-sm btn-secondary" onclick="exportNewsData()">📥 डेटा डाऊनलोड (JSON)</button>
+          <button class="btn btn-sm btn-outline-danger" onclick="resetNewsData()">🔄 डिफॉल्ट रिसेट</button>
+          <button class="btn btn-sm btn-danger" onclick="handleAdminLogout()">लॉगआउट 🚪</button>
+        </div>
+      </div>
+
+      <!-- ADMIN TABS -->
+      <div class="admin-nav-tabs">
+        <button class="admin-tab-btn active" id="tabAddBtn" onclick="switchAdminTab('add')">➕ नवी बातमी जोडा</button>
+        <button class="admin-tab-btn" id="tabManageBtn" onclick="switchAdminTab('manage')">📋 बातम्यांची यादी (<span id="adminTotalCount">0</span>)</button>
+        <button class="admin-tab-btn" id="tabTickerBtn" onclick="switchAdminTab('ticker')">📢 ब्रेकिंग टिकर</button>
+      </div>
+
+      <!-- TAB 1: ADD / EDIT ARTICLE FORM -->
+      <div class="admin-tab-content active" id="adminTabAdd">
+        <h4 id="formHeaderTitle">नवीन बातमी प्रकाशित करा</h4>
+        <form id="articleForm" onsubmit="handleSaveArticle(event)">
+          <input type="hidden" id="editArticleId" value="">
+          
+          <div class="form-row">
+            <div class="form-group col-8">
+              <label>बातमीचे शीर्षक (Title) *</label>
+              <input type="text" id="articleTitleInput" placeholder="उदा. महाराष्ट्रात नव्या योजनेची घोषणा..." required class="form-control">
+            </div>
+            <div class="form-group col-4">
+              <label>विभाग (Category) *</label>
+              <select id="articleCategorySelect" required class="form-control">
+                <option value="महाराष्ट्र">महाराष्ट्र</option>
+                <option value="राजकारण">राजकारण</option>
+                <option value="मुंबई">मुंबई</option>
+                <option value="पुणे">पुणे</option>
+                <option value="देश">देश</option>
+                <option value="जग">जग</option>
+                <option value="क्रीडा">क्रीडा</option>
+                <option value="मनोरंजन">मनोरंजन</option>
+                <option value="व्यापार">व्यापार</option>
+                <option value="आरोग्य">आरोग्य</option>
+                <option value="तंत्रज्ञान">तंत्रज्ञान</option>
+                <option value="व्हिडिओ">व्हिडिओ</option>
+                <option value="फोटो">फोटो</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label>बातमी प्रतिमा (Image URL) *</label>
+              <input type="url" id="articleImgInput" placeholder="https://picsum.photos/800/500?random=88" required class="form-control" onchange="previewArticleImage()">
+            </div>
+            <div class="form-group col-6">
+              <label>किंवा संगणकावरून फोटो अपलोड करा</label>
+              <input type="file" id="articleFileInput" accept="image/*" class="form-control" onchange="handleFileUpload(event)">
+            </div>
+          </div>
+
+          <!-- Image Preview -->
+          <div class="img-preview-box" id="imgPreviewWrap" style="display: none;">
+            <span>फोटो पूर्वदृश्य (Image Preview):</span>
+            <img id="imgPreview" src="" alt="Preview">
+          </div>
+
+          <div class="form-group">
+            <label>थोडक्यात सारांश (Short Excerpt / Subtitle)</label>
+            <input type="text" id="articleDescInput" placeholder="१-२ ओळीत बातमीचा संक्षिप्त भाग..." class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>संपूर्ण बातमी तपशील (Full Article Content) *</label>
+            <textarea id="articleContentInput" rows="6" placeholder="येथे बातमीचा सविस्तर मजकूर लिहा..." required class="form-control"></textarea>
+          </div>
+
+          <div class="form-row align-center">
+            <div class="form-group col-6">
+              <label>लेखक / प्रतिनिधी नाव</label>
+              <input type="text" id="articleAuthorInput" value="न्यू महाराष्ट्र गर्जना प्रतिनिधी" class="form-control">
+            </div>
+            <div class="form-group col-6 checkboxes-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="articleIsHeroInput"> मुख्य बातमी (Hero Story) बनवा
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="articleIsBreakingInput"> ताजी बातमी (Breaking Ticker) मध्ये दाखवा
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success">✅ बातमी प्रकाशित करा</button>
+            <button type="button" class="btn btn-secondary" onclick="resetArticleForm()">रद्द करा</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- TAB 2: MANAGE ARTICLES TABLE -->
+      <div class="admin-tab-content" id="adminTabManage">
+        <div class="manage-search-bar">
+          <input type="text" id="adminSearchInput" placeholder="बातमी शोधा..." class="form-control" onkeyup="renderAdminTable()">
+        </div>
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>फोटो</th>
+                <th>शीर्षक</th>
+                <th>विभाग</th>
+                <th>वेळ</th>
+                <th>कृती (Actions)</th>
+              </tr>
+            </thead>
+            <tbody id="adminNewsTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: TICKER MANAGER -->
+      <div class="admin-tab-content" id="adminTabTicker">
+        <h4>ब्रेकिंग बातमी टिकर संपादन</h4>
+        <p>खालील बॉक्समध्ये ब्रेकिंग बातम्या लिहा. (प्रत्येक ओळीवर १ बातमी किंवा | ने वेगळे करा)</p>
+        <textarea id="tickerEditorTextarea" rows="6" class="form-control"></textarea>
+        <div class="form-actions" style="margin-top: 12px;">
+          <button type="button" class="btn btn-success" onclick="saveTickerText()">💾 टिकर अपडेट करा</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 3. MEDIA LIGHTBOX / VIDEO MODAL -->
+<div class="modal-overlay" id="mediaModal">
+  <div class="modal-container media-modal-container">
+    <button class="modal-close-btn" onclick="closeMediaModal()">&times;</button>
+    <div id="mediaModalBody"></div>
+  </div>
+</div>
+
+<!-- GOOGLE TRANSLATE ENGINE (HIDDEN CONTAINER FOR MULTI-LANGUAGE) -->
+<div id="google_translate_element" style="display:none; visibility:hidden; width:0; height:0; overflow:hidden;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'mr',
+    includedLanguages: 'mr,en,hi,gu,ta,te,kn,bn,pa,ml',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="app.js"></script>
+</body>
+</html>
