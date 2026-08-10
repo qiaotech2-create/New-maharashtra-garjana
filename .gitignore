@@ -1,0 +1,15 @@
+# Dependencies & Build
+node_modules/
+.DS_Store
+Thumbs.db
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Local environment & logs
+*.log
+.env.local
+.env
