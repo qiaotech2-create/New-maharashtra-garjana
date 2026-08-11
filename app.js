@@ -1143,12 +1143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('languageSelect');
     if (langSelect) langSelect.value = savedLang;
     setTimeout(() => {
-      const googleCombo = document.querySelector('.goog-te-combo');
-      if (googleCombo && googleCombo.value !== savedLang) {
-        googleCombo.value = savedLang;
-        googleCombo.dispatchEvent(new Event('change'));
-      }
-    }, 1200);
+      translatePageLanguage(savedLang, true);
+    }, 500);
   }
 });
 
@@ -1165,26 +1161,46 @@ function changeTitleFont(fontClass) {
   }
 }
 
-// ── MULTI-LANGUAGE TRANSLATION ENGINE ──
-function translatePageLanguage(langCode) {
+// ── MULTI-LANGUAGE TRANSLATION ENGINE (MASTER DATA) ──
+const MASTER_LANG_DATA = {
+  'mr': {
+    'home': 'मुख्यपान', 'maharashtra': 'महाराष्ट्र', 'politics': 'राजकारण', 'mumbai': 'मुंबई', 
+    'pune': 'पुणे', 'national': 'देश', 'world': 'जग', 'sports': 'क्रीडा', 'entertainment': 'मनोरंजन', 
+    'business': 'व्यापार', 'health': 'आरोग्य', 'tech': 'तंत्रज्ञान', 'video': 'व्हिडिओ', 'photo': 'फोटो'
+  },
+  'en': {
+    'home': 'Home', 'maharashtra': 'Maharashtra', 'politics': 'Politics', 'mumbai': 'Mumbai', 
+    'pune': 'Pune', 'national': 'National', 'world': 'World', 'sports': 'Sports', 'entertainment': 'Entertainment', 
+    'business': 'Business', 'health': 'Health', 'tech': 'Tech', 'video': 'Videos', 'photo': 'Photos'
+  },
+  'hi': {
+    'home': 'मुख्य पृष्ठ', 'maharashtra': 'महाराष्ट्र', 'politics': 'राजनीति', 'mumbai': 'मुंबई', 
+    'pune': 'पुणे', 'national': 'देश', 'world': 'विश्व', 'sports': 'खेल', 'entertainment': 'मनोरंजन', 
+    'business': 'व्यापार', 'health': 'स्वास्थ्य', 'tech': 'तकनीक', 'video': 'वीडियो', 'photo': 'तस्वीरें'
+  }
+};
+
+function translatePageLanguage(langCode, isInit = false) {
   if (!langCode) return;
   localStorage.setItem('preferredSiteLanguage', langCode);
 
-  const googleCombo = document.querySelector('.goog-te-combo');
-  if (googleCombo) {
-    googleCombo.value = langCode;
-    googleCombo.dispatchEvent(new Event('change'));
-    if (typeof showToast === 'function') {
-      const names = {
-        mr: 'मराठी', en: 'English', hi: 'हिंदी', gu: 'ગુજરાતી',
-        ta: 'தமிழ்', te: 'తెలుగు', kn: 'ಕನ್ನಡ', bn: 'বাংলা', pa: 'ਪੰਜਾਬੀ', ml: 'മലയാളം'
-      };
-      showToast(`भाषा यशस्वीरीत्या बदलली: ${names[langCode] || langCode}`, 'success');
+  const langData = MASTER_LANG_DATA[langCode] || MASTER_LANG_DATA['mr']; // Fallback to Marathi
+
+  // Translate main navigation (requires adding data-i18n attributes or matching by href/class)
+  const navLinks = document.querySelectorAll('.main-nav .nav-list a');
+  const keys = ['home', 'maharashtra', 'politics', 'mumbai', 'pune', 'national', 'world', 'sports', 'entertainment', 'business', 'health', 'tech', 'video', 'photo'];
+  
+  navLinks.forEach((link, idx) => {
+    if (keys[idx] && langData[keys[idx]]) {
+      link.textContent = langData[keys[idx]];
     }
-  } else {
-    // Cookie-based fallback for Google Translate engine
-    document.cookie = `googtrans=/mr/${langCode}; path=/; domain=${window.location.hostname}`;
-    document.cookie = `googtrans=/mr/${langCode}; path=/;`;
-    location.reload();
+  });
+
+  if (!isInit && typeof showToast === 'function') {
+    const names = {
+      mr: 'मराठी', en: 'English', hi: 'हिंदी', gu: 'ગુજરાતી',
+      ta: 'தமிழ்', te: 'తెలుగు', kn: 'ಕನ್ನಡ', bn: 'বাংলা', pa: 'ਪੰਜਾਬੀ', ml: 'മലയാളം'
+    };
+    showToast(`Language updated to: ${names[langCode] || langCode}`, 'success');
   }
 }
