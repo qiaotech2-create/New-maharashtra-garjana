@@ -305,10 +305,10 @@ body {
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
-  padding: 4px;
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .logo-wrap:hover {
