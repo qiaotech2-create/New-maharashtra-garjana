@@ -186,7 +186,8 @@ button, input, select, textarea {
 
 /* HIDE DEFAULT GOOGLE TRANSLATE BANNER OVERLAYS */
 .goog-te-banner-frame.skiptranslate,
-.goog-te-banner-frame {
+.goog-te-banner-frame,
+.goog-te-gadget {
   display: none !important;
 }
 body {

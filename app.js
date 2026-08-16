@@ -1184,17 +1184,31 @@ function translatePageLanguage(langCode, isInit = false) {
   if (!langCode) return;
   localStorage.setItem('preferredSiteLanguage', langCode);
 
-  const langData = MASTER_LANG_DATA[langCode] || MASTER_LANG_DATA['mr']; // Fallback to Marathi
+  if (langCode === 'mr') {
+    // Clear Google Translate cookie to restore original Marathi text
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+  } else {
+    // Set cookie for other languages
+    document.cookie = `googtrans=/mr/${langCode}; path=/;`;
+    document.cookie = `googtrans=/mr/${langCode}; domain=${window.location.hostname}; path=/;`;
+  }
 
-  // Translate main navigation (requires adding data-i18n attributes or matching by href/class)
-  const navLinks = document.querySelectorAll('.main-nav .nav-list a');
-  const keys = ['home', 'maharashtra', 'politics', 'mumbai', 'pune', 'national', 'world', 'sports', 'entertainment', 'business', 'health', 'tech', 'video', 'photo'];
-  
-  navLinks.forEach((link, idx) => {
-    if (keys[idx] && langData[keys[idx]]) {
-      link.textContent = langData[keys[idx]];
+  // Trigger Google Translate hidden combo box
+  const select = document.querySelector('select.goog-te-combo');
+  if (select) {
+    select.value = langCode === 'mr' ? 'mr' : langCode;
+    
+    // Setting value to original language may not trigger properly, sometimes we need to set it to ''
+    // First try the language code, then dispatch. If it's mr, set to ''.
+    if (langCode === 'mr') {
+        select.value = '';
     }
-  });
+    select.dispatchEvent(new Event('change'));
+  } else if (!isInit) {
+    // If widget not mounted yet and this is not initialization, reload to apply cookie
+    window.location.reload();
+  }
 
   if (!isInit && typeof showToast === 'function') {
     const names = {
