@@ -1283,7 +1283,7 @@ body {
 .footer-logo {
   height: 80px;
   margin-bottom: 16px;
-  filter: brightness(0) invert(1);
+  border-radius: 8px; /* Optional: adds a slight curve if it's a square JPG */
 }
 
 .footer-tagline {
