@@ -1184,6 +1184,19 @@ function translatePageLanguage(langCode, isInit = false) {
   if (!langCode) return;
   localStorage.setItem('preferredSiteLanguage', langCode);
 
+  // Dynamically toggle the notranslate meta tag to prevent native Chrome popup while allowing widget
+  let metaTag = document.querySelector('meta[name="google"][content="notranslate"]');
+  if (langCode !== 'mr') {
+    if (metaTag) metaTag.remove();
+  } else {
+    if (!metaTag) {
+      metaTag = document.createElement('meta');
+      metaTag.name = 'google';
+      metaTag.content = 'notranslate';
+      document.head.appendChild(metaTag);
+    }
+  }
+
   if (langCode === 'mr') {
     // Clear Google Translate cookie to restore original Marathi text
     document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
