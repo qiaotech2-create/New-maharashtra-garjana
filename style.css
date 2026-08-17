@@ -187,11 +187,21 @@ button, input, select, textarea {
 /* HIDE DEFAULT GOOGLE TRANSLATE BANNER OVERLAYS */
 .goog-te-banner-frame.skiptranslate,
 .goog-te-banner-frame,
-.goog-te-gadget {
+.goog-te-gadget,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+#goog-gt-tt,
+iframe[name="goog-te-banner-frame"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  border: none !important;
+  z-index: -10000 !important;
 }
 body {
   top: 0px !important;
+  position: static !important;
 }
 .goog-tooltip, .goog-tooltip:hover {
   display: none !important;
